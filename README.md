@@ -8,4 +8,4 @@
  
  # 4.) Sathan  => Landing Page Navbar Footer included
  
-# 5.) Ishan = > Payment Checkout Page and admin UI with 
+# 5.) Ishan = > Payment Checkout Page and admin UI 
