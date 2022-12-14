@@ -8,6 +8,10 @@ function MyApp({ Component, pageProps }) {
     <Component {...pageProps} />
      </ChakraProvider> 
   ) 
+function MyApp({ Component, pageProps }) {
+  return (
+        <Component {...pageProps} />
+  )
 }
 
 export default MyApp
