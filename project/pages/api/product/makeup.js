@@ -1,6 +1,7 @@
 
 import { Mongoconnect } from "../../../database/dbconnect";
-import makeupModel from "../../models/makeup.model";
+import makeupModel from "../../../models/makeup.model";
+// import makeupModel from "../../models/makeup.model";
 
 const Makeup = async (req, res) =>{
     

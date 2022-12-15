@@ -1,5 +1,6 @@
 import { Mongoconnect } from "../../../database/dbconnect"
 import makeupModel from "../../../models/makeup.model";
+// import makeupModel from "../../../models/makeup.model";
 
 
 export default async  function makeup_product(req,res){
