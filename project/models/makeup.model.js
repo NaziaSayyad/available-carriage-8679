@@ -11,4 +11,4 @@ const makeupschema = new Schema({
    price :Number
 });
 
-export default models.Makeupmodel || model("makeup", makeupschema);
+export default models.makeup || model("makeup", makeupschema);

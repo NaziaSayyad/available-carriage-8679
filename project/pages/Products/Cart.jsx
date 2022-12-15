@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Heading, Image, Select, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Image, Input, Select, Text } from "@chakra-ui/react";
+import {MdKeyboardArrowRight} from "react-icons/md";
 
 export const Cart = () => {
     return (
-        <Box width={{ base: "90%", sm: "90%", md: "65%", lg: "65%" }} m={"auto"}>
+        <Box width={{ base: "99%", sm: "99%", md: "95%", lg: "65%" }} m={"auto"}>
             <Box margin={"32px 0px 24px"}>
                 <Heading fontSize={"24px"}>My Basket</Heading>
             </Box>
@@ -83,7 +84,7 @@ export const Cart = () => {
                                                 <Text fontSize={"12px"}>Color: 9</Text>
                                             </Box>
                                             <Box>
-                                                <Text>$30.00</Text>
+                                                <Text>$38.00</Text>
                                             </Box>
                                         </Flex>
                                         <Flex justifyContent={"space-between"}>
@@ -132,8 +133,76 @@ export const Cart = () => {
                     </Box>
                 </Box>
                 <Box width={"32%"}>
-                    <Box padding={"16px"} border={"1px solid rgb(204, 204, 204)"} borderRadius={"5px"}>
-                         product
+                    <Box padding={"16px"} border={"1px solid rgb(204, 204, 204)"} borderRadius={"5px"} >
+                        <Flex justifyContent={"space-between"} fontSize={"14px"} lineHeight={"2"}>
+                           <Text>Merchandise Subtotal</Text>
+                           <Text fontWeight={"bold"}>$38.00</Text>
+                        </Flex>
+                        <Flex justifyContent={"space-between"} fontSize={"14px"} lineHeight={"2"}>
+                           <Text>Shipping & Handling</Text>
+                           <Text fontWeight={"bold"}>TBD</Text>
+                        </Flex>
+                        <Flex justifyContent={"space-between"} mb={'10px'} fontSize={"14px"} lineHeight={"2"}>
+                           <Text>Estimated Tax & Other Fees</Text>
+                           <Text fontWeight={"bold"}>TBD</Text>
+                        </Flex>
+                        <hr/>
+                        <Flex justifyContent={"space-between"} fontSize={"16px"}>
+                            <Text fontWeight={"bold"}>Estimated Total</Text>
+                            <Text fontWeight={"bold"}>$38.00</Text>
+                        </Flex>
+                        <Text fontSize={"12px"}>or 4 payments of $9.50 with Klarna.<br/> or afterpay </Text>
+                        <Text fontSize={"12px"} mt={"8px"}>Shipping & taxes calculated during checkout</Text>
+                        <Button 
+                          padding={"3.5px 15.75px"} 
+                          background={"#CF112C"}
+                          fontSize={"14px"}
+                          borderRadius={"20px"}
+                          textAlign={"center"}
+                          color={"white"}
+                          fontWeight={"bold"}
+                          width={"100%"}
+                          mt={"15px"}
+                          _hover={{background:"#CF112C"}}
+                         >
+                            Checkout Shipped Items
+                        </Button>
+                        <Button 
+                          display={"flex"} 
+                          gap={"10px"}
+                          width={"100%"}
+                          fontSize={"14px"}
+                          padding={"3.5px 15.75px"} 
+                          background={"transparent"}
+                          borderRadius={"20px"}
+                          border={"2px solid black"}
+                          textAlign={"center"}
+                          color={"black"}
+                          fontWeight={"bold"}
+                          mt={"10px"}
+                          _hover={{background:"transparent"}}
+                          >
+                            <Text>Pay with</Text>
+                            <Image src={"https://www.sephora.com/img/ufe/logo-paypal.svg"} width={"40%"}/>
+                        </Button>
+                    </Box>
+                    <Box mt={"10px"} padding={"16px"} border={"1px solid rgb(204, 204, 204)"} borderRadius={"5px"}>
+                        <Flex g={"5px"} alignItems={"center"} fontSize={"12px"} mb={"5px"} ml={{base:"0px", sm:"0px", md:"0px",lg:"150px"}}><Text>View featured offers</Text><MdKeyboardArrowRight/></Flex> 
+                        <Input placeholder={"Promo or Reward Code"} focusBorderColor={"black"}/>  
+                    </Box>
+                    <Box mt={"10px"} padding={"16px"} border={"1px solid rgb(204, 204, 204)"} borderRadius={"5px"}>
+                        <Heading fontSize={"16px"} m={"0 0 12px"}>Need assistance ?</Heading>
+                        <Text fontSize={"14px"}>1-877-SEPHORA (1-877-737-4672)<br/>TTY: 1-888-866-9845</Text> 
+                        <Text fontSize={"14px"} m={"8px 0px"}>Free return shipping or return in store</Text>
+                        <Text fontSize={"14px"} mb={"5px"}>We accept</Text>
+                        <Flex gap={"5px"}>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/sephora.svg"} alt={"1-img"} width={"15%"} height={"5%"}/>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/payPal.svg"} alt={"2-img"} width={"15%"} height={"5%"}/>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/visa.svg"} alt={"3-img"} width={"15%"} height={"5%"}/>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/masterCard.svg"} alt={"4-img"} width={"15%"} height={"5%"}/>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/discover.svg"} alt={"5-img"} width={"15%"} height={"5%"}/>
+                            <Image src={"https://www.sephora.com/img/ufe/payments/americanExpress.svg"} alt={"6-img"} width={"15%"} height={"5%"}/>
+                        </Flex>
                     </Box>
                 </Box>
             </Flex>
