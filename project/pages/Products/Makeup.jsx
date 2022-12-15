@@ -1,98 +1,22 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox, Flex, Grid, GridItem, Heading, Image, ListItem, Select, SimpleGrid, Text, UnorderedList } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { useState, useNavigate } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Link from "next/link";
 
-const products = [
-    {
-        id:1,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:2,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:3,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:4,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:5,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:6,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:7,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:8,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:9,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    },
-    {
-        id:10,
-        img:"https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164",
-        title:"Kosas",
-        name:"Air Brow Clear + Clean Lifting Treatment Eyebrow Gel with Lamination Effect",
-        rating:"7",
-        price:"100"
-    }
-]
+export default function MakeupProducts() {
 
-export const MakeupProducts = () => {
- 
-    const [data, setData] = useState(products);
+    const [data, setData] = useState([]);
 
-    const showCartBtn = () => {
-        console.log("hovered");
-       document.getElementsByClassName("cartbtn").display = "block";
-    }
+    const getData = async () => {
+        const { data } = await axios.get(`http://localhost:3000/api/shop/makeup`);
+        setData(data);
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
 
     return (
         <Box width={{ base: "90%", sm: "95%", md: "85%", lg: "85%" }} margin={"auto"} p={"8px 0px"}>
@@ -368,29 +292,31 @@ export const MakeupProducts = () => {
                         <Box>
                             <SimpleGrid columns={[1, 2, 3, 4]} gap={3}>
                                 {
-                                    data?.map((el)=>(
-                                        <Box key={el.id} onMouseOver={()=>showCartBtn()}>
-                                            <Image src={el.img} alt={`id-${el.id}-img`}/>
-                                            <button className="cartbtn" style={{display:"none"}}>Add to Cart</button>
-                                            <Text 
-                                              fontSize={"12px"} 
-                                              margin={"16px 0px 1.5px"} 
-                                              textOverflow={"ellipsis"} 
-                                              overflow={"hidden"} 
-                                              maxW={"100%"} 
-                                              whiteSpace={"pre-wrap"} 
-                                              overflowWrap={"break-word"}
-                                              >
-                                                <b>{el.title}</b>
-                                            </Text>
-                                            <Text _hover={{textDecoration:"underline"}}>{el.name}</Text>
-                                            <Flex gap={"5px"} alignItems={"center"}>
-                                                <Image src="https://www.sephora.com/img/ufe/icons/star.svg" width={"15px"} height={"15px"}/>
-                                                <Text>{el.rating}/10</Text>
-                                            </Flex>
-                                            <Text>${el.price}</Text>
-                                        </Box>
-                                    )) 
+                                    data?.map((curElem) => (
+                                        <Link href={"/Products/cart"}>
+                                            <Box key={curElem._id}>
+                                                <Image src={curElem.small_img} alt={`id-${curElem._id}-img`} />
+                                                <button className="cartbtn" style={{ display: "none" }}>{curElem.look}</button>
+                                                <Text
+                                                    fontSize={"12px"}
+                                                    margin={"16px 0px 1.5px"}
+                                                    textOverflow={"ellipsis"}
+                                                    overflow={"hidden"}
+                                                    maxW={"100%"}
+                                                    whiteSpace={"pre-wrap"}
+                                                    overflowWrap={"break-word"}
+                                                >
+                                                    <b>{curElem.title}</b>
+                                                </Text>
+                                                <Text _hover={{ textDecoration: "underline" }}>{curElem.name}</Text>
+                                                <Flex gap={"5px"} alignItems={"center"}>
+                                                    <Image src="https://www.sephora.com/img/ufe/icons/star.svg" width={"15px"} height={"15px"} />
+                                                    <Text>{curElem.rating}</Text>
+                                                </Flex>
+                                                <Text>${curElem.price}</Text>
+                                            </Box>
+                                        </Link>
+                                    ))
                                 }
                             </SimpleGrid>
                         </Box>
@@ -400,3 +326,14 @@ export const MakeupProducts = () => {
         </Box>
     )
 }
+
+// export const getStaticProps = async () => {
+//     const res = await fetch("http://localhost:3000/api/shop/makeup");
+//     const data = await res.json();
+//     console.log(data,"get");
+//     return {
+//         props: {
+//             data: data
+//         },
+//     };
+// }
