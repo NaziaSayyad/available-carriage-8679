@@ -8,6 +8,7 @@ import MakeupProducts from "./Products/Makeup";
 export default function Home() {
   return (
       <div>
+           {/* ......................................only Landing page will be imported here........................ */}
           <MakeupProducts />
           {/* <Checkout/> */}
           {/* <Cart /> */}
