@@ -4,7 +4,7 @@ import '../styles/globals.css'
 import { ChakraProvider } from "@chakra-ui/react";
 import { Navbar } from "../Components/Navbar";
 import Footer from "../Components/Footer";
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Navbar/>
@@ -14,5 +14,4 @@ export default function MyApp({ Component, pageProps }) {
   )
 }
 
-
-
+export default MyApp
