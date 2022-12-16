@@ -1,22 +1,101 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox, Flex, Grid, GridItem, Heading, Image, ListItem, Select, SimpleGrid, Text, UnorderedList } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox, Flex, Grid, GridItem, Heading, Icon, Image, ListItem, Select, SimpleGrid, StylesProvider, Text, Tooltip, UnorderedList, useToast } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { FiShoppingCart } from "react-icons/fi";
+import { get } from "mongoose";
 
 export default function MakeupProducts() {
 
     const [data, setData] = useState([]);
+    const [sortByPrice, setByPrice] = useState(false);
+    const [toggle,setToggle]=useState(false)
+    const toast = useToast();
 
     const getData = async () => {
+        console.log("hello")
         const { data } = await axios.get(`http://localhost:3000/api/shop/makeup`);
+        console.log(data);  
+        console.log("hello")
         setData(data);
     };
 
+    // const AddToCart = async (curElem) => {
+    //     const cartData = await axios.post(`http://localhost:3000/api/shop/makeup`, curElem);
+    // }
+
     useEffect(() => {
         getData();
-    }, []);
+    }, [toggle]);
 
+    const handleCart = (curElem) => {
+        // AddToCart(curElem);
+        console.log(curElem);
+        toast({
+            title: 'Product added to cart',
+            description: `Product has been added to cart successfully`,
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+            position: 'top',
+        })
+    };
+
+    // sort start 
+    
+    function handleChange(e) {
+        let selected = e.target.value;
+        console.log(selected);
+        let newData;
+        if (selected === "HTL") {
+            newData = data.sort(function (a, b) {
+                return Number(b.price) - Number(a.price);
+            });
+            console.log(newData);
+        }
+        else if (selected === "LTH") {
+            newData = data.sort(function (a, b) {
+                return Number(a.price) - Number(b.price);
+            });
+            console.log(newData);
+        }
+        setData([...newData]);
+    }
+
+//filter start
+   console.log(data,"outside async")
+
+    async function handleCheckbox(e) {
+        let filteredData;
+        // console.log(data,"outside");
+        const { value, checked } = e.target;
+
+        if (checked && value === "Under $25") {
+            filteredData = data.filter(function (el) {
+                return el.price < 25
+            })
+        }
+        else if (checked && value === "$25 to $50") {
+            // setToggle(!toggle)
+            // console.log(data,"inside");
+            filteredData = data.filter(function (el) {
+                return el.price >= 25 && el.price < 50
+            })
+
+        }
+        else if (checked && value === "$50 to $100") {
+            filteredData = data.filter(function (el) {
+                return el.price >= 50 && el.price < 100
+            })
+        }
+        else if (checked && value === "$100 and above") {
+            filteredData = data.filter(function (el) {
+                return el.price > 100
+            })
+        }
+        setData(filteredData);
+    }
 
     return (
         <Box width={{ base: "90%", sm: "95%", md: "85%", lg: "85%" }} margin={"auto"} p={"8px 0px"}>
@@ -109,10 +188,38 @@ export default function MakeupProducts() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4} lineHeight={"2"}>
-                                        <Checkbox colorScheme={"gray"}>Under $25</Checkbox><br />
-                                        <Checkbox colorScheme={"gray"}>$25 to $50</Checkbox><br />
-                                        <Checkbox colorScheme={"gray"}>$50 to $100</Checkbox><br />
-                                        <Checkbox colorScheme={"gray"}>$100 and above</Checkbox><br />
+                                        <Checkbox
+                                            colorScheme={"gray"}
+                                            value="Under $25"
+                                            onChange={(e) => handleCheckbox(e)}
+                                        >
+                                            Under $25
+                                        </Checkbox>
+                                        <br />
+                                        <Checkbox
+                                            colorScheme={"gray"}
+                                            value="$25 to $50"
+                                            onChange={(e) => handleCheckbox(e)}
+                                        >
+                                            $25 to $50
+                                        </Checkbox>
+                                        <br />
+                                        <Checkbox
+                                            colorScheme={"gray"}
+                                            value="$50 to $100"
+                                            onChange={(e) => handleCheckbox(e)}
+                                        >
+                                            $50 to $100
+                                        </Checkbox>
+                                        <br />
+                                        <Checkbox
+                                            colorScheme={"gray"}
+                                            value="$100 and above"
+                                            onChange={(e) => handleCheckbox(e)}
+                                        >
+                                            $100 and above
+                                        </Checkbox>
+                                        <br />
                                     </AccordionPanel>
                                 </AccordionItem>
                             </Accordion>
@@ -283,9 +390,17 @@ export default function MakeupProducts() {
                             </Box>
                             <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
                                 <Text>Sort by :</Text>
-                                <Select placeholder='Relevance' width={"200px"} maxWidth={"90%"} fontWeight={"bold"} border={"none"} focusBorderColor={"white"}>
-                                    <option value='option2'>Price High to Low</option>
-                                    <option value='option3'>Price Low to High</option>
+                                <Select
+                                    placeholder='Relevance'
+                                    width={"200px"}
+                                    maxWidth={"90%"}
+                                    fontWeight={"bold"}
+                                    border={"none"}
+                                    focusBorderColor={"white"}
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    <option value='HTL'>Price High to Low</option>
+                                    <option value='LTH'>Price Low to High</option>
                                 </Select>
                             </Box>
                         </Flex>
@@ -293,29 +408,45 @@ export default function MakeupProducts() {
                             <SimpleGrid columns={[1, 2, 3, 4]} gap={3}>
                                 {
                                     data?.map((curElem) => (
-                                        <Link href={"/Products/cart"}>
-                                            <Box key={curElem._id}>
-                                                <Image src={curElem.small_img} alt={`id-${curElem._id}-img`} />
-                                                <button className="cartbtn" style={{ display: "none" }}>{curElem.look}</button>
-                                                <Text
-                                                    fontSize={"12px"}
-                                                    margin={"16px 0px 1.5px"}
-                                                    textOverflow={"ellipsis"}
-                                                    overflow={"hidden"}
-                                                    maxW={"100%"}
-                                                    whiteSpace={"pre-wrap"}
-                                                    overflowWrap={"break-word"}
-                                                >
-                                                    <b>{curElem.title}</b>
-                                                </Text>
-                                                <Text _hover={{ textDecoration: "underline" }}>{curElem.name}</Text>
-                                                <Flex gap={"5px"} alignItems={"center"}>
-                                                    <Image src="https://www.sephora.com/img/ufe/icons/star.svg" width={"15px"} height={"15px"} />
-                                                    <Text>{curElem.rating}</Text>
-                                                </Flex>
+                                        <Box key={curElem._id}>
+                                            <Image src={curElem.small_img} alt={`id-${curElem._id}-img`} />
+                                            <Text
+                                                fontSize={"12px"}
+                                                margin={"16px 0px 1.5px"}
+                                                textOverflow={"ellipsis"}
+                                                overflow={"hidden"}
+                                                maxW={"100%"}
+                                                whiteSpace={"pre-wrap"}
+                                                overflowWrap={"break-word"}
+                                            >
+                                                <b>{curElem.title}</b>
+                                            </Text>
+                                            <Text _hover={{ textDecoration: "underline" }}>{curElem.name}</Text>
+                                            <Flex gap={"5px"} alignItems={"center"}>
+                                                <Image src="https://www.sephora.com/img/ufe/icons/star.svg" width={"15px"} height={"15px"} />
+                                                <Text>{curElem.rating}</Text>
+                                            </Flex>
+                                            <Flex alignItems={"center"} gap={"100px"}>
                                                 <Text>${curElem.price}</Text>
-                                            </Box>
-                                        </Link>
+                                                <Tooltip
+                                                    label="Add to cart"
+                                                    bg="black"
+                                                    placement={"top"}
+                                                    color={"white"}
+                                                    fontSize={"1.2em"}
+                                                >
+                                                    <Button bg={"transparent"} _hover={{ bg: "transparent" }} onClick={() => handleCart(curElem)}>
+                                                        <Icon
+                                                            as={FiShoppingCart}
+                                                            h={8}
+                                                            w={8}
+                                                            alignSelf={"center"}
+                                                            color="red"
+                                                        />
+                                                    </Button>
+                                                </Tooltip>
+                                            </Flex>
+                                        </Box>
                                     ))
                                 }
                             </SimpleGrid>

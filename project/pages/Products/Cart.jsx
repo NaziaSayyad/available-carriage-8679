@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, Image, Input, Select, Text } from "@chakra-ui/react";
 import {MdKeyboardArrowRight} from "react-icons/md";
 
-export const Cart = () => {
+export default function Cart(){
     return (
         <Box width={{ base: "99%", sm: "99%", md: "95%", lg: "65%" }} m={"auto"}>
             <Box margin={"32px 0px 24px"}>
