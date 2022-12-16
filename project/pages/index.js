@@ -1,5 +1,3 @@
-
-
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
 import { IoIosArrowForward,IoIosArrowBack,IoMdArrowDropright } from 'react-icons/io';
