@@ -11,6 +11,7 @@ import Beauty from "../Components/Beauty";
 import Little from "../Components/Little";
 import Addbox from "../Components/Addbox";
 import Routes from "../Components/Routes";
+import Offers from "../Components/Offers";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -137,6 +138,7 @@ export default class SimpleSlider extends Component {
       <Beauty/>
       <FeatureBox/>
       <Little/>
+      <Offers/>
       <Addbox/>
       </>
     );

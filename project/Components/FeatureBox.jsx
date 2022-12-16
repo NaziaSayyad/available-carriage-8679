@@ -21,7 +21,7 @@ import React from 'react'
 <Box w="90%" mb={"20px"}>
 <SimpleGrid minChildWidth='100px' spacing='40px'>
 {obj.map((e)=>{
- return <Box boxShadow=" rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+ return <Box key={e.detail} boxShadow=" rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
  w={"140px"}h={{ base: "180px", sm: "180px", md: "180px" }}
  overflow="hidden" padding="20px" borderRadius={"10px"} 
 minH={{ base: "160px", sm: "180px", md: "180px" }} position="relative">
