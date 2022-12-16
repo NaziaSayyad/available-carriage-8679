@@ -1,50 +1,54 @@
-import { Box,
+import { background, Box,
     Input,
     SimpleGrid,
     Text} from '@chakra-ui/react'
-import React, { useState } from 'react'
-import Link from "next/link"
+import React, { useEffect, useState } from 'react'
+import Link from "next/link";
+import { Alert, AlertIcon,useToast} from "@chakra-ui/react"
 import styles from "./Checkout.module.css"
 import Place from './Place'
-// import OrderSuccessful from '../OrderSuccessful/OrderSuccessful'
-// import CheckoutHeader from './checkoutHeader'
-// import ChekoutFooter from './chekoutFooter'
-
-function Checkout({children}) {
-    const [address, setAddress] = useState({
-        FirstName: "",
+function Checkout({Components,children}) {
+    let [address, setAddress] = useState({
+        FirstName : "",
         LastName: "",
         Phone: "",
-        StreetAddress: "",
+        StreetAddress :"",
         PostCode: "",
       });
-      
-      const handleaddAddress = () => {
-        setChange(false);
-      };
+
+      const toast = useToast()
+
+   const infoSaved = () => {
+       toast({
+        title : "Shipping addres saved Click on Continue",
+        status:"success",
+        duration:9000,
+        isClosable:true,
+        position:"top"
+       })
+   }
 
       const handleOnChange = (e) => {
         const { name, value } = e.target;
         setAddress({ ...address, [name]: value });
       };
     
-     
+    //  console.log("address", address)
 
       const handleSave = (e) => {
         e.preventDefault();
         setChange(true);
-        localStorage.setItem("address", JSON.stringify(address));
+       localStorage.setItem("address", JSON.stringify(address));
       };
+     
       console.log("address:-",address);
+      
+      
       const [change, setChange] = useState(false);
-  const [add, setAdd] = useState(false);
-
-
-
+  
   return (
+    
     <div>
-        {/* <CheckoutHeader/> */}
-        {/* {children} */}
         <Box >
         <Box className={styles.header}>
             <Text fontSize={'2.5rem'} fontWeight={500}>R E V I S H</Text>
@@ -73,13 +77,13 @@ function Checkout({children}) {
                     >
                   
                 </Box>
-                <Link href={"../OrderSuccessful/OrderSuccessful"}>
                     <button 
+                    onClick={infoSaved}
                     className= {styles.savebtn}
                     type="submit"
                     >Save & Continue</button> 
-                   </Link>
                     </form>
+                
                 </Box>
                 
                 <Text fontSize={'0.9rem'} fontWeight={600} mt='1rem'>Ship to FedEx Pickup Location 🛈</Text>
@@ -119,7 +123,7 @@ function Checkout({children}) {
             </Box>
         </Box>
     </Box>
-        {/* <ChekoutFooter/> */}
+        
     </div>
   )
 }

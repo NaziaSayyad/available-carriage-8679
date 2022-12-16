@@ -3,14 +3,11 @@ import React from 'react'
 import  Link from 'next/link'
 // import OrderSuccessful from '../OrderSuccessful/OrderSuccessful'
 // import { BsFillCreditCard2FrontFill} from "react-icons/bs";
-import styles from "./Checkout.module.css"
+import styles from "./Payment.module.css"
 const Place = () => {
   return (
-    <Box className= {styles.placemain}
-    w={["90vw","80vw","70vw","30vw"]}
-    direction={["column","column","row","row"]}
-    marginLeft={["-0.5rem","1rem","4rem","8rem"]}
-    // bgColor={["red","green","blue","Pink"]}
+    <Box className= {styles.placemain} 
+    w={["70vw","70vw","70vw","30vw"]}
     >
                 <Text className={styles.td01}>OVERVIEW</Text>  <br/>
         <Box className={styles.td1}>
@@ -44,7 +41,7 @@ const Place = () => {
         <Box>
   
             <Divider />
-         <Link href="../OrderSuccessful/OrderSuccessful"><button className={styles.placebtn}>CONTINUE</button> </Link>
+         <Link href="../OrderSuccessful/OrderSuccessful"><button className={styles.placebtn}>Place Order</button> </Link>
         </Box>
     </Box>
   )
