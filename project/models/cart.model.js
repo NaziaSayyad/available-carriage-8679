@@ -7,7 +7,8 @@ const CartSchema = new Schema({
   name: String,
   rating: Number,
   price: Number,
-  userId: String,
+  user: String,
 });
 
 export default models.cart || model("cart", CartSchema);
+// line no batao

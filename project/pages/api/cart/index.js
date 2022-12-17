@@ -1,30 +1,37 @@
+import { RequiredIndicator } from "@chakra-ui/react";
 import { GrApple } from "react-icons/gr";
 import { Mongoconnect } from "../../../database/dbconnect";
 // import middleware from "../../../middleware/middleware";
 import cartModel from "../../../models/cart.model";
+const jwt = require("jsonwebtoken");
 
 export default async function handler(req, res) {
   const { method, body } = req;
+  let deleteid = req.query.id;
 
   await Mongoconnect();
   const token = req.headers?.authorization?.split(" ")[1];
 
   let payload;
-
+  let user;
+  
   if (token) {
     const decoded = jwt.verify(token, "hush");
     if (decoded) {
       let userId = decoded.userID;
+      user = userId;
+      console.log(user);
       payload = { ...body, image: userId };
     }
   } else {
-    return res.send({ msg: "Please Login" });
+    res.send({ msg: "Please Login" });
   }
 
   switch (method) {
     case "GET": {
       try {
-        let data = await cartModel.find();
+        console.log(user);
+        let data = await cartModel.find({ image: user });
         return res.send(data);
       } catch {
         return res.send("error occured");
@@ -44,6 +51,8 @@ export default async function handler(req, res) {
     }
 
     case "DELETE": {
+      let data = await cartModel.findByIdAndDelete(deleteid);
+      res.send({ msg: "deleted" });
     }
     default: {
       res.send("error occured");

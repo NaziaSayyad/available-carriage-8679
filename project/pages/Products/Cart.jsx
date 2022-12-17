@@ -13,20 +13,44 @@ import { useEffect, useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Cart = () => {
-
-  const [cartData, setCartData] = useState([]);
-
+  const [data, setData] = useState();
+  function getData() {
+    fetch("http://localhost:3000/api/cart", {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  }
   useEffect(() => {
-    const getCartData = async () => {
-      const data = await axios.get("http://localhost:3000/api/cart")
-      setCartData(data);
-      console.log(cartData);
-    }
-    getCartData()
-  }, [])
-
+    getData();
+  }, []);
+  
+  function deleteData(id) {
+    console.log(id);
+    return fetch(`http://localhost:3000/api/cart?id=${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }
+  console.log(data);
+  
   return (
     <Box width={{ base: "99%", sm: "99%", md: "95%", lg: "65%" }} m={"auto"}>
+      <Box border="1px solid yellow" h="200px" w="200px">
+        {data?.map((item) => (
+          <div>
+            <Text>{item.title}</Text>
+            <button onClick={() => deleteData(item._id)}>Delete</button>
+          </div>
+        ))}
+      </Box>
       <Box margin={"32px 0px 24px"}>
         <Heading fontSize={"24px"}>My Basket</Heading>
       </Box>

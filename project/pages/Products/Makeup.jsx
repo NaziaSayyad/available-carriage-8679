@@ -58,7 +58,6 @@ export default function MakeupProducts() {
     setData(data);
   };
 
-
   useEffect(() => {
     const { min, max } = range;
     console.log(min, max);
