@@ -8,10 +8,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Navbar/>
-    <Component {...pageProps} />
-    <Footer/>
+      <Component {...pageProps} />
+      <Footer/>
      </ChakraProvider>
   )
 }
-
 export default MyApp
