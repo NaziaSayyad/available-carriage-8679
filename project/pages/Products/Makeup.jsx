@@ -56,28 +56,24 @@ export default function MakeupProducts() {
     setData(data);
   };
 
-  // const AddToCart = async (curElem) => {
-  //     const cartData = await axios.post(`http://localhost:3000/api/shop/makeup`, curElem);
-  // }
-
   useEffect(() => {
     const { min, max } = range;
     console.log(min, max);
     getData(min, max);
   }, [range]);
 
-  const handleCart = (curElem) => {
-    // AddToCart(curElem);
-    console.log(curElem);
-    toast({
-      title: "Product added to cart",
-      description: `Product has been added to cart successfully`,
-      status: "success",
-      duration: 2000,
-      isClosable: true,
-      position: "top",
-    });
-  };
+  function handleCart(curElem) {
+    fetch("http://localhost:3000/api/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+      body: JSON.stringify(curElem),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }
 
   // sort start
 
