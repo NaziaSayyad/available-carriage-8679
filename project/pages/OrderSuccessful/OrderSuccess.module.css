@@ -17,12 +17,16 @@
 .congratsimage{
     display: block;
     margin: auto;
+    width: 80%;
     background-color: #ffd763;
 }
 .rightimage{
     background-color: #ffd763;
     height: 100px;
-    width: 100px;
+   
     margin: auto;
     background: #ffd763;
+}
+.orderDetails{
+    /* background-color: #ffd763; */
 }

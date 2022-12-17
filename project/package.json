@@ -25,7 +25,9 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
