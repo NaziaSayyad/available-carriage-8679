@@ -1,3 +1,4 @@
+
 import Head from 'next/head'
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
@@ -140,3 +141,4 @@ export default class SimpleSlider extends Component {
     );
   }
 }
+
