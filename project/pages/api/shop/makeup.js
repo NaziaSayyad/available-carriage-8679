@@ -7,7 +7,6 @@ export default async function makeup_product(req, res) {
   await Mongoconnect();
   let { sort, order, min, max } = req.query;
   order = order === "asc" ? 1 : -1;
-  console.log(min, max);
 
   if (sort && order) {
     let data = await makeupModel.find().sort({ price: order });
