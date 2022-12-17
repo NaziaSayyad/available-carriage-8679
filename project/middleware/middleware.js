@@ -14,8 +14,4 @@
 //     res.send({ msg: "please login" });
 //   }
 // }
-import { NextResponse } from "next/server";
-export default function middleware(req, res) {
-  console.log("checking");
-  NextResponse();
-}
+import { Middleware } from "next-api-middleware";
