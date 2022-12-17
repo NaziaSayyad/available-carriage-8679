@@ -1,16 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Checkout from "./checkout/checkout"
-import Payment from './Payment/Payment'
-import Example from './Payment/Example'
-import OrderSuccessful from './OrderSuccessful/OrderSuccessful'
-export default function Home() {
-  return (
-    <div className={styles.container}>
-         <Checkout></Checkout>
-         {/* <Payment/> */}
-         {/* <OrderSuccessful/> */}
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
 import { IoIosArrowForward,IoIosArrowBack,IoMdArrowDropright } from 'react-icons/io';
@@ -42,8 +30,6 @@ function SampleNextArrow(props) {
     </div>
   );
 }
-
-
 const data =  [
   {
     img:"https://www.sephora.com/contentimages/2022-fragrance-q4-site-desktop-mobile-home-page-hero-banner-holiday-multi-brands-1000x750-can.jpg?imwidth=545",
@@ -76,7 +62,6 @@ const data =  [
     color:"white"
   },
 ]
-
 export default class SimpleSlider extends Component {
   render() {
     var settings = {
