@@ -16,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import style from "./auth.module.css";
 import Login from "./Loign";
+import { AiOutlineHeart } from "react-icons/ai";
+
 export default function AuthPop() {
   return (
     <Popover trigger="hover">
@@ -110,7 +112,11 @@ export default function AuthPop() {
               </div>{" "}
               <hr />
               <div className={style.list_main}>
-                <p className={style.child1}>Loves</p>
+                <p className={style.child1}>
+                  {" "}
+                  <AiOutlineHeart />
+                  Loves
+                </p>
                 <p className={style.child2}>View save products</p>
               </div>{" "}
               <hr />

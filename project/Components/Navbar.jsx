@@ -75,9 +75,7 @@ export const Navbar = () => {
           w={{ base: "40%", sm: "40%", md: "20%" }}
           justifyContent="space-evenly"
         >
-          <Box>
-            <AuthPop />
-          </Box>
+          <Box></Box>
           <Box width={"20%"}>
             <AiOutlineMessage size={"1.9rem"} />
           </Box>
@@ -85,9 +83,10 @@ export const Navbar = () => {
             <AiOutlineHeart size={"1.9rem"} />
           </Box>
           {/* sign in box */}
-          <Box display={"flex"} gap="10px" alignItems="center">
+          {/* <Box display={"flex"} gap="10px" alignItems="center">
             <CgGirl size={"2rem"} />
-          </Box>
+          </Box> */}
+          <AuthPop />
         </Box>
       </Box>
     </>

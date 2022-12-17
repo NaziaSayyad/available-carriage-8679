@@ -29,8 +29,6 @@ function SampleNextArrow(props) {
     </div>
   );
 }
-
-
 const data =  [
   {
     img:"https://www.sephora.com/contentimages/2022-fragrance-q4-site-desktop-mobile-home-page-hero-banner-holiday-multi-brands-1000x750-can.jpg?imwidth=545",
@@ -63,7 +61,6 @@ const data =  [
     color:"white"
   },
 ]
-
 export default class SimpleSlider extends Component {
   render() {
     var settings = {
@@ -142,3 +139,4 @@ export default class SimpleSlider extends Component {
     );
   }
 }
+
