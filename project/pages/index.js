@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import Head from "next/head";
+=======
+>>>>>>> c565394b70c99c8b3f90aeb1381415262e81dba8
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
 import {

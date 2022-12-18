@@ -1,13 +1,27 @@
 import { Box } from "@chakra-ui/layout";
+import { Heading, HStack, IconButton, Image, Stack, Text, VStack } from "@chakra-ui/react"
+import { IoTrashBinSharp } from "react-icons/io5";
 import Users from "../../component/Admin/All users";
-import Sidebar from "../../component/Admin_Sidebar/sidebar";
 
-export default function (){
+
+export default function  User_details({users}){
     return(
-        <Box>
-            {/* <h1> Users Details </h1> */}
-            <Sidebar />
-        <Users />
-        </Box>
-    )
+        
+        <>
+        <Users 
+            users = {users}
+            />
+        
+        </>
+        )
+}
+
+export const getStaticProps = async () =>{
+    const res = await fetch(`http://localhost:3000/api/users`);
+    const data =  await res.json();
+    return{
+      props :{
+        users :data
+      }
+    }
 }

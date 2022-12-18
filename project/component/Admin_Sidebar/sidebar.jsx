@@ -16,9 +16,7 @@ export default function (){
                         }
                         }
                 >
-                    <Heading>  <Link href='pannel'> Dashboard </Link> </Heading>  
-                    <Heading> <Link href='allusers'> Users  </Link></Heading>
-                    <Heading> <Link href='product'> Products</Link>  </Heading>
+                    
                 </Box>
                 
         </Flex>

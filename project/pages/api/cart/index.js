@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   let payload;
   let user;
-
+  
   if (token) {
     const decoded = jwt.verify(token, "hush");
     if (decoded) {
@@ -41,6 +41,7 @@ export default async function handler(req, res) {
       try {
         const data = new cartModel(payload);
         await data.save();
+        console.log(data);
 
         return res.send({ msg: "successfully added" });
       } catch (e) {

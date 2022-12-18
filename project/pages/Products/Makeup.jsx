@@ -37,14 +37,16 @@ const filter = {
   max: 400,
   value: false,
 };
+
 export default function MakeupProducts() {
   const [data, setData] = useState([]);
   const [sortByPrice, setByPrice] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [range, setRange] = useState(filter);
-
+  const [cartData, setCartData] = useState([]);
   const toast = useToast();
 
+  //getdata
   const getData = async (min, max) => {
     console.log(min, max);
 
@@ -62,6 +64,8 @@ export default function MakeupProducts() {
     getData(min, max);
   }, [range]);
 
+  // Add to Cart
+
   function handleCart(curElem) {
     fetch("http://localhost:3000/api/cart", {
       method: "POST",
@@ -72,19 +76,18 @@ export default function MakeupProducts() {
       body: JSON.stringify(curElem),
     })
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        if (res.msg === "Please Login") {
-          alert("please login");
-          return;
-        }
-        if (res.msg == "successfully added") {
-          alert("success");
-        }
-      });
+      .then((res) => console.log(res));
+    toast({
+      title: "Product added to cart",
+      description: `Product has been added to cart successfully`,
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
   }
 
-  // sort start
+  // Sort start
 
   function handleChange(e) {
     let selected = e.target.value;
@@ -573,7 +576,7 @@ export default function MakeupProducts() {
                         <Button
                           bg={"transparent"}
                           _hover={{ bg: "transparent" }}
-                          onClick={() => handleCart(curElem)}
+                          onClick={() => handleCart({ curElem })}
                         >
                           <Icon
                             as={FiShoppingCart}

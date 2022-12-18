@@ -8,6 +8,7 @@ import {
   Select,
   Text,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
@@ -30,6 +31,7 @@ const Cart = () => {
   useEffect(() => {
     getData();
   }, []);
+
   function deleteData(id) {
     console.log(id);
     return fetch(`http://localhost:3000/api/cart?id=${id}`, {
@@ -49,6 +51,7 @@ const Cart = () => {
       });
   }
   console.log(data);
+
   return (
     <Box width={{ base: "99%", sm: "99%", md: "95%", lg: "65%" }} m={"auto"}>
       <Box margin={"32px 0px 24px"}>
