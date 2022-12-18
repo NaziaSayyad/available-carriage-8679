@@ -1,10 +1,83 @@
-import { Box, Divider, Input, Text } from '@chakra-ui/react'
-import React from 'react'
-import  Link from 'next/link'
+import { Box, Button, Center, Divider, Input, Text, useDisclosure, useToast } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import  Link from 'next/link';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+  } from '@chakra-ui/react'
+
 // import OrderSuccessful from '../OrderSuccessful/OrderSuccessful'
 // import { BsFillCreditCard2FrontFill} from "react-icons/bs";
 import styles from "./Payment.module.css"
 const Place = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const toast = useToast()
+
+    let OTP = '';
+    const handleOTP = () => {
+      OTP = Math.floor(1000 + Math.random() * 9000)
+      console.log (OTP);
+      localStorage.setItem("OTP", JSON.stringify(OTP))
+  
+      toast({
+          title : `Your one time OTP is ${OTP}`,
+          status:"success",
+          duration:2000,
+          isClosable:true,
+          position:"top"
+         })
+  }
+
+
+  //   const [otp,setotp]=useState([])
+
+  // useEffect(() => {
+  //   let x = JSON.parse(localStorage.getItem("OTP"))
+  //   setotp(x)
+  //   },[])
+  // console.log("otp",otp)
+  // console.log("OTP",OTP)
+
+
+    const handlepay = () => {
+
+      // if (otp==OTP)
+      // {
+       toast({
+            title : `Payment Done`,
+            status:"success",
+            duration:3000,
+            isClosable:true,
+            position:"top"
+           })
+      // }
+      // else{
+      //   toast({
+      //     title : `Wrong OTP`,
+      //     status:"error",
+      //     duration:3000,
+      //     isClosable:true,
+      //     position:"top"
+      //    })
+      // }
+      
+        
+
+           setTimeout (() =>{ 
+              window.location.href = "http://localhost:3000/OrderSuccessful"
+           },4000)
+    }
+
+    
+   
+
+
   return (
     <Box className= {styles.placemain} 
     w={["70vw","70vw","70vw","30vw"]}
@@ -41,7 +114,24 @@ const Place = () => {
         <Box>
   
             <Divider />
-         <Link href="../OrderSuccessful/OrderSuccessful"><button className={styles.placebtn}>Place Order</button> </Link>
+         <button className={styles.placebtn} onClick={onOpen}>Pay</button> 
+         <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Enter Registered Mobile Number</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Input placeholder='Enter Mobile Number'/> <br/> <br/>
+            <Input placeholder='Enter OTP'/>
+            <Center>
+            <Button onClick={handleOTP}  marginTop={"5px"} marginRight={"5px"}>Get OTP</Button>
+            <Button onClick={handlepay} marginTop={"5px"} >Pay</Button>
+            
+            </Center>
+            
+          </ModalBody>
+        </ModalContent>
+      </Modal>
         </Box>
     </Box>
   )

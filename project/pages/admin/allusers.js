@@ -1,7 +1,8 @@
 import { Box } from "@chakra-ui/layout";
 import { Heading, HStack, IconButton, Image, Stack, Text, VStack } from "@chakra-ui/react"
 import { IoTrashBinSharp } from "react-icons/io5";
-import Users from "../../component/Admin/All users";
+import Users from "../../Components/Admin_component/Admin/All users";
+// import Users from "../../component/Admin/All users";
 
 
 export default function  User_details({users}){

@@ -8,6 +8,10 @@ const CartSchema = new Schema({
   rating: Number,
   price: Number,
   user: String,
+  qty: {
+    type:Number,
+    default : 1
+  }
 });
 
 export default models.cart || model("cart", CartSchema);

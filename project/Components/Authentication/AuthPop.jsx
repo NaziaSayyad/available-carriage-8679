@@ -15,9 +15,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import style from "./auth.module.css";
-import Login from "./Loign";
+
 import { AiOutlineHeart } from "react-icons/ai";
 import { useState } from "react";
+
+import Login from "./Login";
 import SignUp2 from "./SignUp2";
 
 export default function AuthPop() {
