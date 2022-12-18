@@ -21,12 +21,17 @@ const Cart = () => {
       },
     })
       .then((res) => res.json())
-      .then((res) => setData(res));
+      .then((res) => {
+        setData(res);
+        if (res.msg === "Please Login") {
+          alert("please login");
+        }
+      });
   }
   useEffect(() => {
     getData();
   }, []);
-  
+
   function deleteData(id) {
     console.log(id);
     return fetch(`http://localhost:3000/api/cart?id=${id}`, {
@@ -37,20 +42,18 @@ const Cart = () => {
       },
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        getData();
+
+        if (res.msg === "Please Login") {
+          alert("please login");
+        }
+      });
   }
   console.log(data);
-  
+
   return (
     <Box width={{ base: "99%", sm: "99%", md: "95%", lg: "65%" }} m={"auto"}>
-      <Box border="1px solid yellow" h="200px" w="200px">
-        {data?.map((item) => (
-          <div>
-            <Text>{item.title}</Text>
-            <button onClick={() => deleteData(item._id)}>Delete</button>
-          </div>
-        ))}
-      </Box>
       <Box margin={"32px 0px 24px"}>
         <Heading fontSize={"24px"}>My Basket</Heading>
       </Box>
@@ -179,112 +182,105 @@ const Cart = () => {
                 </Box>
               </Flex>
               <hr />
-              <Flex m={"20px 0px 20px 0px"} gap={"20px"} cursor={"pointer"}>
-                <Box width={"20%"} height={"20%"}>
-                  <Image
-                    src={
-                      "https://www.sephora.com/productimages/sku/s2429579-main-zoom.jpg?imwidth=164"
-                    }
-                  />
-                </Box>
-                <Box width={"85%"}>
- {/*.................................... //mapping cart products... ..............................................*/}
-                  {
-                    cartData?.map((el) => (
-                      <Box>
-                        <Flex gap={"20px"} justifyContent={"space-between"}>
-                          <Box>
-                            <Heading
-                              fontSize={"14px"}
-                              _hover={{ textDecoration: "underline" }}
-                            >
-                              {el.title}
-                            </Heading>
-                            <Text
-                              fontSize={"14px"}
-                              fontWeight={"500"}
-                              _hover={{ textDecoration: "underline" }}
-                            >
-                              {el.name}
-                            </Text>
-                            <Text fontSize={"12px"}>
-                              SIZE 0.4 oz/ 12 mL • ITEM 2508075
-                            </Text>
-                            <Text fontSize={"12px"}>Color: 9</Text>
-                          </Box>
-                          <Box>
-                            <Text>{el.price}</Text>
-                          </Box>
-                        </Flex>
-                        <Flex justifyContent={"space-between"}>
-                          <Select
-                            placeholder={"1"}
-                            width={"60px"}
-                            border={"1px solid black"}
-                            focusBorderColor={"transparent"}
+              {data?.map((el) => (
+                <Flex m={"20px 0px 20px 0px"} gap={"20px"} cursor={"pointer"}>
+                  <Box width={"20%"} height={"20%"}>
+                    <Image src={el.small_img} />
+                  </Box>
+                  <Box width={"85%"}>
+                    <Box>
+                      <Flex gap={"20px"} justifyContent={"space-between"}>
+                        <Box>
+                          <Heading
+                            fontSize={"14px"}
+                            _hover={{ textDecoration: "underline" }}
                           >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                          </Select>
-                          <Flex
-                            alignItems={"center"}
-                            justifyContent={"space-between"}
+                            {el.title}
+                          </Heading>
+                          <Text
+                            fontSize={"14px"}
+                            fontWeight={"500"}
+                            _hover={{ textDecoration: "underline" }}
                           >
-                            <Box
-                              color={"#136BEA"}
-                              fontSize={"12px"}
-                              pr={"10px"}
-                              textDecoration={"underline"}
-                            >
-                              <a href="#">Move to Loves</a>
-                            </Box>
-                            <Box
-                              border={"1px solid lightgray"}
-                              bg={"lightgray"}
-                              height={"20px"}
-                            ></Box>
-                            <Box
-                              color={"#136BEA"}
-                              fontSize={"12px"}
-                              pl={"10px"}
-                              textDecoration={"underline"}
-                            >
-                              <a href="#">Remove</a>
-                            </Box>
-                          </Flex>
-                          <Button
-                            borderRadius={"20px"}
-                            color={"rgb(0, 0, 0)"}
-                            transition={
-                              "color 0.2s ease 0s, border-color 0.2s ease 0s"
-                            }
-                            _hover={{ backgroundColor: "none" }}
-                            background={"white"}
-                            border={"1px solid black"}
+                            {el.name}
+                          </Text>
+                          <Text fontSize={"12px"}>
+                            SIZE 0.4 oz/ 12 mL • ITEM 2508075
+                          </Text>
+                          <Text fontSize={"12px"}>Color: 9</Text>
+                        </Box>
+                        <Box>
+                          <Text>${el.price}</Text>
+                        </Box>
+                      </Flex>
+                      <Flex justifyContent={"space-between"}>
+                        <Select
+                          placeholder={"1"}
+                          width={"60px"}
+                          border={"1px solid black"}
+                          focusBorderColor={"transparent"}
+                        >
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+                        </Select>
+                        <Flex
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                        >
+                          <Box
+                            color={"#136BEA"}
                             fontSize={"12px"}
-                            padding={"0px 10.5px"}
-                            lineHeight={"1"}
-                            minW={"5.5em"}
-                            minH={"32px"}
+                            pr={"10px"}
+                            textDecoration={"underline"}
                           >
-                            Change Method
-                          </Button>
+                            <a href="#">Move to Loves</a>
+                          </Box>
+                          <Box
+                            border={"1px solid lightgray"}
+                            bg={"lightgray"}
+                            height={"20px"}
+                          ></Box>
+                          <Box
+                            color={"#136BEA"}
+                            fontSize={"12px"}
+                            pl={"10px"}
+                            textDecoration={"underline"}
+                            onClick={() => deleteData(el._id)}
+                          >
+                            <a href="#">Remove</a>
+                          </Box>
                         </Flex>
-                      </Box>
-                    ))
-                  }
-
-                  <Box></Box>
-                </Box>
-              </Flex>
+                        <Button
+                          borderRadius={"20px"}
+                          color={"rgb(0, 0, 0)"}
+                          transition={
+                            "color 0.2s ease 0s, border-color 0.2s ease 0s"
+                          }
+                          _hover={{ backgroundColor: "none" }}
+                          background={"white"}
+                          border={"1px solid black"}
+                          fontSize={"12px"}
+                          padding={"0px 10.5px"}
+                          lineHeight={"1"}
+                          minW={"5.5em"}
+                          minH={"32px"}
+                        >
+                          Change Method
+                        </Button>
+                      </Flex>
+                    </Box>
+                    <Box></Box>
+                  </Box>
+                </Flex>
+              ))}
             </Box>
           </Box>
         </Box>

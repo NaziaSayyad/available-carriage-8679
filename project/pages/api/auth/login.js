@@ -13,13 +13,14 @@ export default async function handler(req, res) {
       bycrypt.compare(password, hashed_password, function (err, result) {
         if (result) {
           const token = jwt.sign({ userID: user._id }, "hush");
-          res.send({ msg: "success", token: token });
+
+          res.send({ msg: "success", token: token, name: user.name });
         } else {
           res.send({ msg: "incorrect password" });
         }
       });
     } else {
-      res.send({ msg: "email not resgisterd" });
+      res.send({ msg: "error" });
     }
   } catch (e) {
     res.send(e.message);

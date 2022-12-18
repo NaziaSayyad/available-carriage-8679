@@ -17,6 +17,9 @@ import {
   Flex,
   FormControl,
   Stack,
+  useToast,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrCircleInformation } from "react-icons/gr";
@@ -25,10 +28,31 @@ const initValue = {
   email: "",
   password: "",
 };
-export default function Login() {
+export default function Login({ handleName }) {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
   const [formState, setFormState] = useState(initValue);
-  function handleSubmit() {
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!validateEmail(formState.email)) {
+      toast({
+        title: "error",
+        description: "Invalid Email Address",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+
     return fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
@@ -38,8 +62,49 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", JSON.stringify(res.token));
+        console.log(res.msg);
+        if (res.msg === "success") {
+          toast({
+            title: "success",
+            description: "Successfully Login",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+            position: "top",
+          });
+          setFormState(initValue);
+          handleName(res.name);
+          localStorage.setItem("token", JSON.stringify(res.token));
+          return;
+        }
+        if (res.msg === "incorrect password") {
+          toast({
+            title: "failed",
+            description: "Incorrect Password",
+            status: "error",
+            duration: 1000,
+            isClosable: true,
+            position: "top",
+          });
+          setFormState(initValue);
+          localStorage.setItem("token", JSON.stringify(res.token));
+          return;
+        }
+        if (res.msg === "error");
+        {
+          console.log("why");
+          toast({
+            title: "failed",
+            description: "Email not resgisterd",
+            status: "error",
+            duration: 1000,
+            isClosable: true,
+            position: "top",
+          });
+          setFormState(initValue);
+          localStorage.setItem("token", JSON.stringify(res.token));
+          return;
+        }
       });
   }
   function handleChange(e) {
@@ -80,32 +145,15 @@ export default function Login() {
                 Sign in or create an account to enjoy{" "}
                 <b>FREE standard shipping</b> on all orders.
               </Text>
-              <FormControl>
+              <form onSubmit={handleSubmit}>
                 <Stack gap={"6px"}>
                   <Input
                     focusBorderColor="black"
-                    _focusVisible={{
-                      border: "1px solid black",
-                    }}
                     variant="outline"
                     onChange={handleChange}
                     value={email}
                     name="email"
-                    placeholder="Email Addres*"
-                    _placeholder={{
-                      fontWeight: "400",
-                      color: "teal",
-                    }}
-                    rounded={"5px"}
-                  />
-                  <Input
-                    focusBorderColor="black"
-                    variant="outline"
-                    onChange={handleChange}
-                    value={password}
-                    name="password"
-                    placeholder="Password*"
-                    type="password"
+                    placeholder="Email"
                     rounded={"5px"}
                     _focusVisible={{
                       border: "1px solid black",
@@ -114,7 +162,31 @@ export default function Login() {
                       fontWeight: "400",
                       color: "teal",
                     }}
+                    required="true"
                   />
+                  <InputGroup size="md">
+                    <Input
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                      rounded={"5px"}
+                      _focusVisible={{
+                        border: "1px solid black",
+                      }}
+                      _placeholder={{
+                        fontWeight: "400",
+                        color: "teal",
+                      }}
+                      placeholder="password"
+                      name="password"
+                      value={password}
+                      onChange={handleChange}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? "Hide" : "Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </Stack>
                 {/* <i class="far fa-eye" id="togglePassword"></i> */}
                 <Flex mt="6px" justify={"space-between"} fontSize="15px">
@@ -138,12 +210,12 @@ export default function Login() {
                   _hover={{
                     backgroundColor: "black",
                   }}
-                  onClick={() => handleSubmit()}
+                  type="submit"
                 >
                   <Text fontWeight={"bold"}>Sign In</Text>
                 </Button>
                 <hr />
-              </FormControl>
+              </form>
               <Box>
                 <Text fontWeight={"bold"}>New to Sephora ?</Text>
 

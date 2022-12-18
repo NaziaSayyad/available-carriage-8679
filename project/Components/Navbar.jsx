@@ -9,9 +9,9 @@ import React from "react";
 import { BsSearch, BsPeople, BsBasketFill } from "react-icons/bs";
 import { CgGirl } from "react-icons/cg";
 import { AiOutlineMessage, AiOutlineHeart } from "react-icons/ai";
-import Login from "./Loign";
-import Auth from "./AuthPop";
-import AuthPop from "./AuthPop";
+import Login from "./Authentication/Loign";
+import Auth from "./Authentication/AuthPop";
+import AuthPop from "./Authentication/AuthPop";
 //   import { FaStoreAlt } from "react-icons/fa";​
 export const Navbar = () => {
   return (

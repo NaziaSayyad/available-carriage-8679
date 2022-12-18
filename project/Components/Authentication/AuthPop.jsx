@@ -17,12 +17,18 @@ import {
 import style from "./auth.module.css";
 import Login from "./Loign";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useState } from "react";
+import SignUp2 from "./SignUp2";
 
 export default function AuthPop() {
+  const [name, setName] = useState("SignUp");
+  function handleName(value) {
+    setName(value);
+  }
   return (
     <Popover trigger="hover">
       <PopoverTrigger>
-        <Button>SignUp</Button>
+        <Button>{name}</Button>
       </PopoverTrigger>
       <PopoverContent w="380px" mt="5px">
         <PopoverBody>
@@ -41,18 +47,9 @@ export default function AuthPop() {
               </Box>
             </Flex>
             <Flex justify={"space-between"} mt="8px">
-              <Login />
+              <Login handleName={handleName} />
 
-              <Button
-                w="48%"
-                rounded={"30px"}
-                h="30px"
-                bg="white"
-                color={"black"}
-                border="2px solid black"
-              >
-                <Text fontWeight={"semi-bold"}>Create Account</Text>
-              </Button>
+              <SignUp2 />
             </Flex>
             <Box h="500px" overflow="auto" mt="20px" className={style.main_div}>
               <Box

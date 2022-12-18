@@ -46,7 +46,7 @@ export default function MakeupProducts() {
   const [cartData, setCartData] = useState([]);
   const toast = useToast();
 
-  //getdata 
+  //getdata
   const getData = async (min, max) => {
     console.log(min, max);
 
@@ -139,180 +139,180 @@ export default function MakeupProducts() {
           </BreadcrumbItem>
         </Breadcrumb>
       </Box>
-      <Flex gap={"48px"}> 
-          <Box width={{ base: "0%", sm: "0%", md: "20%", lg: "20%" }}>
-            <Box
-              m={"0px 0px 24px"}
-              lineHeight={"1.25"}
-              fontSize={"24px"}
-              wordwrap={"break-word"}
-              whiteSpace={"pre-wrap"}
-            >
-              <Heading>Makeup</Heading>
+      <Flex gap={"48px"}>
+        <Box width={{ base: "0%", sm: "0%", md: "20%", lg: "20%" }}>
+          <Box
+            m={"0px 0px 24px"}
+            lineHeight={"1.25"}
+            fontSize={"24px"}
+            wordwrap={"break-word"}
+            whiteSpace={"pre-wrap"}
+          >
+            <Heading>Makeup</Heading>
+          </Box>
+          <Box>
+            <UnorderedList listStyleType={"none"} ml={"0px"}>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Face</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Eye</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Lip</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Cheek</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Value & Gift Sets</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Makeup Paletts</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Brushes & Applicators</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Accessories</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Nail</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Vegan</a>
+              </ListItem>
+              <ListItem lineHeight={"2"}>
+                <a href="#">Mini Size</a>
+              </ListItem>
+            </UnorderedList>
+          </Box>
+          <Box>
+            <Box m={"32px 0px 0px"} color={"#666666"} fontSize={"12px"}>
+              <Text>Filters</Text>
             </Box>
-            <Box>
-              <UnorderedList listStyleType={"none"} ml={"0px"}>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Face</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Eye</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Lip</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Cheek</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Value & Gift Sets</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Makeup Paletts</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Brushes & Applicators</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Accessories</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Nail</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Vegan</a>
-                </ListItem>
-                <ListItem lineHeight={"2"}>
-                  <a href="#">Mini Size</a>
-                </ListItem>
-              </UnorderedList>
-            </Box>
-            <Box>
-              <Box m={"32px 0px 0px"} color={"#666666"} fontSize={"12px"}>
-                <Text>Filters</Text>
+            <Box mt={"10px"}>
+              <Accordion allowToggle>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left" p={"0px"}>
+                        Brand
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4} lineHeight={"2"}>
+                    <Checkbox colorScheme={"gray"}>NARS</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>SEPHORA COLLECTION</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>
+                      Rare Beauty by Selena
+                    </Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>Dior</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>Charlotte Tilbury</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>LANEIGE</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>Sephora Favorites</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>Supergoop!</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>Kosas</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>ILIA</Checkbox>
+                    <br />
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+              <Accordion allowToggle>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        Price Range
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4} lineHeight={"2"}>
+                    <Checkbox
+                      colorScheme={"gray"}
+                      value="Under $25"
+                      onChange={(e) => handleCheckbox(0, 25, e.target.checked)}
+                    >
+                      Under $25
+                    </Checkbox>
+                    <br />
+                    <Checkbox
+                      colorScheme={"gray"}
+                      onChange={(e) => handleCheckbox(25, 50, e.target.checked)}
+                    >
+                      $25 to $50
+                    </Checkbox>
+                    <br />
+                    <Checkbox
+                      colorScheme={"gray"}
+                      value="$50 to $100"
+                      onChange={(e) =>
+                        handleCheckbox(50, 100, e.target.checked)
+                      }
+                    >
+                      $50 to $100
+                    </Checkbox>
+                    <br />
+                    <Checkbox
+                      colorScheme={"gray"}
+                      value="$100 and above"
+                      onChange={(e) =>
+                        handleCheckbox(100, Infinity, e.target.checked)
+                      }
+                    >
+                      $100 and above
+                    </Checkbox>
+                    <br />
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+              <Accordion allowToggle>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        Rating
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4} lineHeight={"2"}>
+                    <Checkbox colorScheme={"gray"}>4 & up</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>3 & up</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>2 & up</Checkbox>
+                    <br />
+                    <Checkbox colorScheme={"gray"}>1 & up</Checkbox>
+                    <br />
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+              <Box mt={"20px"}>
+                <Image
+                  src="https://pubsaf.global.ssl.fastly.net/prmt/6011f998ff0b2c94ef21eb869fe3d925"
+                  width={"160"}
+                  height={"600"}
+                  alt="ad-img"
+                />
               </Box>
-              <Box mt={"10px"}>
-                <Accordion allowToggle>
-                  <AccordionItem>
-                    <h2>
-                      <AccordionButton>
-                        <Box as="span" flex="1" textAlign="left" p={"0px"}>
-                          Brand
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4} lineHeight={"2"}>
-                      <Checkbox colorScheme={"gray"}>NARS</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>SEPHORA COLLECTION</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>
-                        Rare Beauty by Selena
-                      </Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>Dior</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>Charlotte Tilbury</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>LANEIGE</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>Sephora Favorites</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>Supergoop!</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>Kosas</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>ILIA</Checkbox>
-                      <br />
-                    </AccordionPanel>
-                  </AccordionItem>
-                </Accordion>
-                <Accordion allowToggle>
-                  <AccordionItem>
-                    <h2>
-                      <AccordionButton>
-                        <Box as="span" flex="1" textAlign="left">
-                          Price Range
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4} lineHeight={"2"}>
-                      <Checkbox
-                        colorScheme={"gray"}
-                        value="Under $25"
-                        onChange={(e) => handleCheckbox(0, 25, e.target.checked)}
-                      >
-                        Under $25
-                      </Checkbox>
-                      <br />
-                      <Checkbox
-                        colorScheme={"gray"}
-                        onChange={(e) => handleCheckbox(25, 50, e.target.checked)}
-                      >
-                        $25 to $50
-                      </Checkbox>
-                      <br />
-                      <Checkbox
-                        colorScheme={"gray"}
-                        value="$50 to $100"
-                        onChange={(e) =>
-                          handleCheckbox(50, 100, e.target.checked)
-                        }
-                      >
-                        $50 to $100
-                      </Checkbox>
-                      <br />
-                      <Checkbox
-                        colorScheme={"gray"}
-                        value="$100 and above"
-                        onChange={(e) =>
-                          handleCheckbox(100, Infinity, e.target.checked)
-                        }
-                      >
-                        $100 and above
-                      </Checkbox>
-                      <br />
-                    </AccordionPanel>
-                  </AccordionItem>
-                </Accordion>
-                <Accordion allowToggle>
-                  <AccordionItem>
-                    <h2>
-                      <AccordionButton>
-                        <Box as="span" flex="1" textAlign="left">
-                          Rating
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4} lineHeight={"2"}>
-                      <Checkbox colorScheme={"gray"}>4 & up</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>3 & up</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>2 & up</Checkbox>
-                      <br />
-                      <Checkbox colorScheme={"gray"}>1 & up</Checkbox>
-                      <br />
-                    </AccordionPanel>
-                  </AccordionItem>
-                </Accordion>
-                <Box mt={"20px"}>
-                  <Image
-                    src="https://pubsaf.global.ssl.fastly.net/prmt/6011f998ff0b2c94ef21eb869fe3d925"
-                    width={"160"}
-                    height={"600"}
-                    alt="ad-img"
-                  />
-                </Box>
-                <Text fontSize={"12px"} color={"#666666"} margin={"8px 0px 0px"}>
-                  Sponsered
-                </Text>
-              </Box>
+              <Text fontSize={"12px"} color={"#666666"} margin={"8px 0px 0px"}>
+                Sponsered
+              </Text>
             </Box>
           </Box>
+        </Box>
         <Box width={{ base: "95%", sm: "95%", md: "80%", lg: "80%" }}>
           <Box m={"0px 0px 32px"}>
             <Image

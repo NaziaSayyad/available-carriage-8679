@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     }
     bycrypt.hash(password, 4, async function (err, hash) {
       const user = new UserSchema({
-        name: firstname + lastname,
+        name: firstname + " " + lastname,
         email,
         password: hash,
       });
