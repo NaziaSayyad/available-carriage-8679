@@ -72,7 +72,16 @@ export default function MakeupProducts() {
       body: JSON.stringify(curElem),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log(res);
+        if (res.msg === "Please Login") {
+          alert("please login");
+          return;
+        }
+        if (res.msg == "successfully added") {
+          alert("success");
+        }
+      });
   }
 
   // sort start

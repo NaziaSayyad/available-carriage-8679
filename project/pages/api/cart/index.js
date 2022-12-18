@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     if (decoded) {
       let userId = decoded.userID;
       user = userId;
-      console.log(user);
+
       payload = { ...body, image: userId };
     }
   } else {
@@ -30,7 +30,6 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET": {
       try {
-        console.log(user);
         let data = await cartModel.find({ image: user });
         return res.send(data);
       } catch {
