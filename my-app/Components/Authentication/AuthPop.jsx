@@ -13,6 +13,7 @@ import {
   Img,
   Flex,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import style from "./auth.module.css";
 
@@ -24,6 +25,7 @@ import SignUp2 from "./SignUp2";
 
 export default function AuthPop() {
   const [name, setName] = useState("SignUp");
+  const toast = useToast();
   function handleName(value) {
     setName(value);
   }
