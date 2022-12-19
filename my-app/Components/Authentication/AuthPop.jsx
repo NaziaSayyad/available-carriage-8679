@@ -27,6 +27,42 @@ export default function AuthPop() {
   function handleName(value) {
     setName(value);
   }
+  const handlelogout = () =>{
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token,"token");
+    if(!token){
+      toast({
+        title: "success",
+        description: "You are not Login",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+      localStorage.removeItem(token);
+      // window.location.href = "/"
+      setTimeout (() =>{ 
+        window.location.href = "/"
+     },4000)
+    }
+    else{
+      toast({
+        title: "success",
+        description: "LogoOut Sucessfully",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+      // window.localStorage.clear();
+      localStorage.removeItem("token")
+      // window.location.href = "/"
+      setTimeout (() =>{ 
+        window.location.href = "/"
+     },2000)
+    }
+  }
+
   return (
     <Popover trigger="hover">
       <PopoverTrigger>
@@ -89,6 +125,14 @@ export default function AuthPop() {
                   See your loyaltty program saving, benifit,rewards
                 </Text>
               </Box>
+              <div className={style.list_main}>
+               <button onClick={handlelogout}>  <p className={style.child1}> LogOut </p> </button>
+                <p className={style.child2}>
+                  Payment, contact info, addressses, more
+                </p>
+              </div>{" "}
+              <hr />
+
               <div className={style.list_main}>
                 <p className={style.child1}>Buy IT Again</p>
                 <p className={style.child2}>

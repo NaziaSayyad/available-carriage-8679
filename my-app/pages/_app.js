@@ -24,8 +24,6 @@ function MyApp({ Component, pageProps }) {
   if(!isauth){
     return(
       <ChakraProvider>
-          
-         
           <Navbar />
           <Component {...pageProps} />
           <Footer />

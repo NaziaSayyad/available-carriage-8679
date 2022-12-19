@@ -5,6 +5,26 @@ import Link from 'next/link'
 // import { BsFillCreditCard2FrontFill} from "react-icons/bs";
 import styles from "./Checkout.module.css"
 const Place = () => {
+    const [cartData, setCartData] = useState([]);
+  
+    function getCartData() {
+      fetch("https://revish.vercel.app/api/cart", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setCartData(res));
+    }
+    useEffect(() => {
+      getCartData();
+    }, []);
+
+    let total = cartData.reduce(function(acc,el){
+        return acc+Number(el.price*el.qty)
+      },0);
+
     return (
         <Box className={styles.placemain}
             w={["90vw", "80vw", "70vw", "30vw"]}
@@ -16,7 +36,7 @@ const Place = () => {
             <Box className={styles.td1}>
 
                 <Text fontWeight={"bold"}>Subtotal</Text>
-                <Text fontWeight={"bold"}>$60.35</Text>
+                <Text fontWeight={"bold"}>{`$ ${total}`}</Text>
             </Box>
             <Box className={styles.td1}>
                 <Link href='#'><Text className={styles.td1} fontWeight={"bold"} color={"#ff3399"}>Discount</Text></Link>
@@ -33,7 +53,7 @@ const Place = () => {
             <hr style={{ border: "1px solid black" }} />
             <Box className={styles.td2}>
                 <Text>Estimated Total</Text>
-                <Text>$15.00</Text>
+                <Text>{`$ ${total}`}</Text>
             </Box>
             <Box className={styles.td3}>
                 {/* <Text>or payments of $6.75 with <strong>Klarna.</strong></Text>
