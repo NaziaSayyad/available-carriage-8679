@@ -29,9 +29,9 @@ const [data,setData]=useState([])
            alt = "congrats"
            className={styles.congratsimage}
            />
-{/* 
-           {  setTimeout (() =>{ 
-              window.location.href = "http://localhost:3000/"
+
+           {/* {  setTimeout (() =>{ 
+              window.location.href = "/"
            },2000)
     } */}
 

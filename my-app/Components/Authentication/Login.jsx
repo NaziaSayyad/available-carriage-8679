@@ -39,6 +39,7 @@ export default function Login({ handleName }) {
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   };
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!validateEmail(formState.email)) {
@@ -53,7 +54,7 @@ export default function Login({ handleName }) {
       return;
     }
 
-    return fetch("http://localhost:3000/api/auth/login", {
+    return fetch("https://revish.vercel.app/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +75,13 @@ export default function Login({ handleName }) {
           });
           setFormState(initValue);
           handleName(res.name);
+          console.log("role", res.role);
           localStorage.setItem("token", JSON.stringify(res.token));
+          if(res.role === "admin"){
+            // window.location.href = "http://localhost:3000/admin"
+            window.location.href = "/admin"
+            localStorage.setItem("token", JSON.stringify(res.token));
+          }
           return;
         }
         if (res.msg === "incorrect password") {
@@ -107,6 +114,7 @@ export default function Login({ handleName }) {
         }
       });
   }
+  
   function handleChange(e) {
     const { name, value } = e.target;
     setFormState({
@@ -114,6 +122,7 @@ export default function Login({ handleName }) {
       [name]: value,
     });
   }
+
   const { email, password } = formState;
   return (
     <>

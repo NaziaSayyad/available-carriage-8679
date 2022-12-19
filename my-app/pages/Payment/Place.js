@@ -70,7 +70,7 @@ const Place = () => {
         
 
            setTimeout (() =>{ 
-              window.location.href = "http://localhost:3000/OrderSuccessful"
+              window.location.href = "https://revish.vercel.app/OrderSuccessful"
            },4000)
     }
 

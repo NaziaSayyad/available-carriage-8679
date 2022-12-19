@@ -88,7 +88,7 @@ export default function SignUp2() {
       return;
     }
 
-    return fetch("http://localhost:3000/api/auth/signup", {
+    return fetch("https://revish.vercel.app/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -18,7 +18,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState([]);
   
   function getCartData() {
-    fetch("http://localhost:3000/api/cart", {
+    fetch("https://revish.vercel.app/api/cart", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -33,7 +33,7 @@ const Cart = () => {
 
 async function deleteData(id) {
     console.log(id);
-    return await fetch(`http://localhost:3000/api/cart?id=${id}`, {
+    return await fetch(`https://revish.vercel.app/api/cart?id=${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const handleSelect = (e,el,qty)=>{
   const handleQty = async (el,qty)=>{
     console.log("qty",qty);
 
-    return await fetch(`http://localhost:3000/api/cart?id=${el._id}`,{
+    return await fetch(`https://revish.vercel.app/api/cart?id=${el._id}`,{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json",
