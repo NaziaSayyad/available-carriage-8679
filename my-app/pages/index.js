@@ -121,8 +121,7 @@ export default class SimpleSlider extends Component {
       ],
     };
     return (
-      <>{
-      console.log("data",data)}
+      <>
         <Routes />
         <Box w={"100%"} mb={"30px"}>
           <Box w={"90%"} m={"auto"}>

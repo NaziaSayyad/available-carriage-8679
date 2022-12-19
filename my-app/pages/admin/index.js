@@ -139,15 +139,18 @@
 import { Box } from "@chakra-ui/layout";
 import { Heading, HStack, IconButton, Image, Stack, Text, VStack } from "@chakra-ui/react"
 import { IoTrashBinSharp } from "react-icons/io5";
+import Admin_nav from "../../Components/Admin_component/Admin Navbar/Navbar";
 import Users from "../../Components/Admin_component/Admin/All users";
 
 
 export default function  Dashboard({users}){
-    console.log(users.length+"all uses")
+    // console.log(users.length+"all uses")
     return(
         
         <>
+        <Admin_nav />
         <Users
+          
             users = {users}
             // n= {users.length}
             />

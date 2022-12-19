@@ -21,6 +21,7 @@
     "mongoose": "^6.8.0",
     "next": "13.0.7",
     "next-connect": "^0.13.0",
+    "node-sass": "^7.0.3",
     "nodemailer": "^6.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

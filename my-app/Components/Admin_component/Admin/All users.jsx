@@ -40,6 +40,7 @@ const Users = ({users}) =>{
          
           { users.map((el) =>(
                <HStack
+               key={el.id}
                p={5}
               
                w="full"
