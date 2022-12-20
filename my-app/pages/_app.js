@@ -8,6 +8,7 @@ import { Navbar } from "../Components/Home/Navbar";
 import Footer from "../Components/Home/Footer";
 import { useEffect, useState } from "react";
 import AdminPannel from "../Components/Admin_component/Admin/pannel";
+import { Admin_Navbar } from "../Components/Admin_component/Admin Navbar/Nav";
 // import Admin_nav from "../Components/Admin_component/Admin Navbar/Navbar";
 // import AdminPannel from "../Components/Admin_component/Admin/pannel";
 // import { JsonWebTokenError } from "jsonwebtoken";
@@ -36,9 +37,9 @@ function MyApp({ Component, pageProps }) {
     if(decode?.role ==="admin"){
       return(
         <ChakraProvider>
-     <Admin_nav />
+     <Admin_Navbar />
           <AdminPannel />
-      {/* <Component {...pageProps} /> */}
+      <Component {...pageProps} />
       {/* <Footer /> */}
     </ChakraProvider>
       )

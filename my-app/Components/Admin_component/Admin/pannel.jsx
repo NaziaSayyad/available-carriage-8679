@@ -8,7 +8,8 @@ const AdminPannel = () =>{
         // Navbar will come here 
        <>
        <Box>
-        <Heading> Dashboard </Heading>
+        
+        <Heading> Admin dashboard </Heading>
        </Box>
         </>
        

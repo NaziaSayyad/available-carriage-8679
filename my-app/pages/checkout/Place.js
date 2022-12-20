@@ -21,10 +21,11 @@ const Place = () => {
       getCartData();
     }, []);
 
-    let total = cartData.reduce(function(acc,el){
+    let subtotal = cartData.reduce(function(acc,el){
         return acc+Number(el.price*el.qty)
       },0);
-
+let gst = 18; let dg= 40;
+let Total = gst + dg +  subtotal;
     return (
         <Box className={styles.placemain}
             w={["90vw", "80vw", "70vw", "30vw"]}
@@ -36,24 +37,24 @@ const Place = () => {
             <Box className={styles.td1}>
 
                 <Text fontWeight={"bold"}>Subtotal</Text>
-                <Text fontWeight={"bold"}>{`$ ${total}`}</Text>
+                <Text fontWeight={"bold"}>{`$ ${subtotal}`}</Text>
             </Box>
             <Box className={styles.td1}>
                 <Link href='#'><Text className={styles.td1} fontWeight={"bold"} color={"#ff3399"}>Discount</Text></Link>
-                <Text fontWeight={600} color={"#ff3399"} >$-.--</Text>
+                <Text fontWeight={600} color={"#ff3399"} >$-0</Text>
             </Box>
             <Box className={styles.td1}>
                 <Link href='#'><Text className={styles.td11} fontWeight={"bold"} >GST</Text></Link>
-                <Text fontWeight={600}>$-.--</Text>
+                <Text fontWeight={600}>{`$${gst}`}</Text>
             </Box>
             <Box className={styles.td1}>
                 <Link href='#'><Text className={styles.td11} fontWeight={"bold"} >Delivery Charges</Text></Link>
-                <Text fontWeight={600}>$-.--</Text>
+                <Text fontWeight={600}>{`${dg}`}</Text>
             </Box>
             <hr style={{ border: "1px solid black" }} />
             <Box className={styles.td2}>
                 <Text>Estimated Total</Text>
-                <Text>{`$ ${total}`}</Text>
+                <Text>{`$ ${Total}`}</Text>
             </Box>
             <Box className={styles.td3}>
                 {/* <Text>or payments of $6.75 with <strong>Klarna.</strong></Text>
