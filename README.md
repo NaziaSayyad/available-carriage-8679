@@ -108,7 +108,7 @@ In this project we have made the foolowing things :
 
 - Sathan Kumar
 
-- Ishaan Mehta
+- Ishan Mehta
 
 
 
