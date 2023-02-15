@@ -1,4 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { Component } from "react";
 import { IoIosArrowForward,IoIosArrowBack,IoMdArrowDropright } from 'react-icons/io';
 import Slider from "react-slick";
@@ -7,15 +8,15 @@ import Slider from "react-slick";
   const Routdata =  [
       {
         name:"New",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Brands",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Makeup",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Skincare",
@@ -23,27 +24,27 @@ import Slider from "react-slick";
       },
       {
         name:"Hair",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Fragrance",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Tools",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Bath",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Mini Size",
-        link:"/product"
+        link:"/Products/Makeup"
       },
       {
         name:"Gifts",
-        link:"/product"
+        link:"/Products/Makeup"
       },
   ]
 
@@ -92,15 +93,33 @@ const Routes = () => {
         <Slider  {...settings}>
               {Routdata.map((e)=>{
                 return(
-                  <Box _hover={{cursor:"pointer"}} key={e.name}>
-                     <Text color={"white"}>{e.name}</Text>
+                  <Link href={e.link}>
+                  <Box _hover={{cursor:"pointer"}}>
+                    <Text color={"white"}>{e.name}</Text>  
                   </Box>
+                  </Link>  
+
                 )
               })}
         </Slider>
         {/* </Box> */}
       </Box>
-    );
+    
+  //   <Box  p={"10px"} w={"100%"} bg={"black"}>
+  //   {/* <Box  w={"90%"}  m={"auto"}> */}
+    
+  //         {Routdata.map((e)=>{
+  //           return(
+  //             <Box _hover={{cursor:"pointer"}}>
+  //              <Link href={e.link}> <Text color={"white"}>{e.name}</Text>  </Link>  
+  //             </Box>
+  //           )
+  //         })}
+   
+  //   {/* </Box> */}
+  // </Box>
+
+     );
   }
 
 

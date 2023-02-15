@@ -21,6 +21,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { GrCircleInformation } from "react-icons/gr";
 import SignUp from "./SignUp";
@@ -33,6 +34,7 @@ export default function Login({ handleName }) {
   const handleClick = () => setShow(!show);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const router = useRouter();
   const [formState, setFormState] = useState(initValue);
   const validateEmail = (email) => {
     return email.match(
@@ -74,7 +76,15 @@ export default function Login({ handleName }) {
           });
           setFormState(initValue);
           handleName(res.name);
+          console.log(res);
+          
+          // console.log("token:", res.token, "role:", res.role );
           localStorage.setItem("token", JSON.stringify(res.token));
+          if(res.role === "admin"){
+            // window.location.href = "/admin"
+            router.push("/admin");
+           localStorage.setItem("token", JSON.stringify(res.token));
+          }
           return;
         }
         if (res.msg === "incorrect password") {

@@ -1,5 +1,7 @@
 import {
   Box,
+  Heading,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -7,11 +9,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { BsSearch, BsPeople, BsBasketFill } from "react-icons/bs";
-import { CgGirl } from "react-icons/cg";
-import { AiOutlineMessage, AiOutlineHeart } from "react-icons/ai";
-import Login from "./Authentication/Loign";
-import Auth from "./Authentication/AuthPop";
-import AuthPop from "./Authentication/AuthPop";
+// import { CgGirl } from "react-icons/cg";
+
+import { AiOutlineMessage, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+
+import AuthPop from "../Authentication/AuthPop";
+import Link from "next/link"; 
 //   import { FaStoreAlt } from "react-icons/fa";​
 export const Navbar = () => {
   return (
@@ -26,11 +29,12 @@ export const Navbar = () => {
         alignItems="center"
       >
         <Box>
+          
           <Text
             fontSize={{ base: "0.9rem", sm: "1.6rem", md: "1.6rem" }}
             fontWeight="400"
           >
-            R E V I S H
+           <Link href='/'>  R E V I S H </Link>
           </Text>
         </Box>
         <Box w="30%">
@@ -75,12 +79,17 @@ export const Navbar = () => {
           w={{ base: "40%", sm: "40%", md: "20%" }}
           justifyContent="space-evenly"
         >
-          <Box></Box>
+         
           <Box width={"20%"}>
             <AiOutlineMessage size={"1.9rem"} />
           </Box>
           <Box>
             <AiOutlineHeart size={"1.9rem"} />
+          </Box>
+          <Box>
+            {/* <a  href="/Products/Cart">  Cart </a>  */}
+            <Link href="/Products/Cart">  <AiOutlineShoppingCart size={"1.9rem"} /> </Link>
+            
           </Box>
           {/* sign in box */}
           {/* <Box display={"flex"} gap="10px" alignItems="center">
@@ -92,3 +101,4 @@ export const Navbar = () => {
     </>
   );
 };
+// https://www.sephora.com/basket

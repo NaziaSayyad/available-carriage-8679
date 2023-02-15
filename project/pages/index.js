@@ -1,23 +1,17 @@
-<<<<<<< HEAD
 import Head from "next/head";
-=======
->>>>>>> c565394b70c99c8b3f90aeb1381415262e81dba8
 import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
-import {
-  IoIosArrowForward,
-  IoIosArrowBack,
-  IoMdArrowDropright,
-} from "react-icons/io";
+import {  IoIosArrowForward, IoIosArrowBack, IoMdArrowDropright,} from "react-icons/io";
+
 import Slider from "react-slick";
-import ChosenSlide from "../Components/chosenSlide";
-import Threebox from "../Components/Threebox";
-import FeatureBox from "../Components/FeatureBox";
-import Beauty from "../Components/Beauty";
-import Little from "../Components/Little";
-import Addbox from "../Components/Addbox";
-import Routes from "../Components/Routes";
-import Offers from "../Components/Offers";
+import ChosenSlide from "../Components/Home/ChosenSlide";
+import Threebox from "../Components/Home/Threebox";
+import Beauty from "../Components/Home/Beauty";
+import FeatureBox from "../Components/Home/FeatureBox";
+import Little from "../Components/Home/Little";
+import Offers from "../Components/Home/Offers";
+import Addbox from "../Components/Home/Addbox";
+import Routes from "../Components/Home/Routes";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -116,7 +110,8 @@ export default class SimpleSlider extends Component {
       ],
     };
     return (
-      <>
+      <>{
+      console.log("data",data)}
         <Routes />
         <Box w={"100%"} mb={"30px"}>
           <Box w={"90%"} m={"auto"}>

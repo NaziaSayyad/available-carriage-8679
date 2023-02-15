@@ -5,9 +5,13 @@ import { Mongoconnect } from "../../../database/dbconnect";
 import cartModel from "../../../models/cart.model";
 const jwt = require("jsonwebtoken");
 
+
 export default async function handler(req, res) {
   const { method, body } = req;
   let deleteid = req.query.id;
+  let updatedId = req.query.id;
+  console.log(body);
+  console.log(method);
 
   await Mongoconnect();
   const token = req.headers?.authorization?.split(" ")[1];
@@ -20,7 +24,7 @@ export default async function handler(req, res) {
     if (decoded) {
       let userId = decoded.userID;
       user = userId;
-
+      console.log(user);
       payload = { ...body, image: userId };
     }
   } else {
@@ -30,6 +34,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET": {
       try {
+        console.log(user);
         let data = await cartModel.find({ image: user });
         return res.send(data);
       } catch {
@@ -43,7 +48,7 @@ export default async function handler(req, res) {
         await data.save();
         console.log(data);
 
-        return res.send({ msg: "successfully added" });
+        return res.status(201).send({ msg: "successfully added" });
       } catch (e) {
         return res.send(e.message);
       }
@@ -51,7 +56,11 @@ export default async function handler(req, res) {
 
     case "DELETE": {
       let data = await cartModel.findByIdAndDelete(deleteid);
-      res.send({ msg: "deleted" });
+      res.status(200).send({ msg: "deleted",data });
+    }
+    case "PATCH": {
+      let data = await cartModel.findByIdAndUpdate(updatedId,body,{new:true});
+      res.status(200).send({ msg: "updated price",data });
     }
     default: {
       res.send("error occured");

@@ -13,17 +13,61 @@ import {
   Img,
   Flex,
   Text,
+  Toast,
+  useToast,
 } from "@chakra-ui/react";
 import style from "./auth.module.css";
-import Login from "./Loign";
+
 import { AiOutlineHeart } from "react-icons/ai";
 import { useState } from "react";
+
+import Login from "./Login";
 import SignUp2 from "./SignUp2";
+import Link from "next/link";
 
 export default function AuthPop() {
   const [name, setName] = useState("SignUp");
+  const toast = useToast();
+ 
   function handleName(value) {
     setName(value);
+  }
+  const handlelogout = () =>{
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token,"token");
+    if(!token){
+      toast({
+        title: "success",
+        description: "You are not Login",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+      localStorage.removeItem(token);
+      // window.location.href = "/"
+      setTimeout (() =>{ 
+        window.location.href = "/"
+     },4000)
+    }
+    else{
+      toast({
+        title: "success",
+        description: "LogoOut Sucessfully",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+      // window.localStorage.clear();
+      localStorage.removeItem("token")
+      // window.location.href = "/"
+      setTimeout (() =>{ 
+        window.location.href = "/"
+     },2000)
+    }
+    
+    
   }
   return (
     <Popover trigger="hover">
@@ -80,6 +124,14 @@ export default function AuthPop() {
                 py="6px"
                 rounded={"5px"}
               >
+                 <div className={style.list_main}>
+               <button onClick={handlelogout}>  <p className={style.child1}> LogOut</p> </button>
+                <p className={style.child2}>
+                  Payment, contact info, addressses, more
+                </p>
+              </div>{" "}
+              <hr />
+
                 <Text fontWeight={"500"}>
                   <i>Beauty</i>INSIDER
                 </Text>
@@ -87,6 +139,7 @@ export default function AuthPop() {
                   See your loyaltty program saving, benifit,rewards
                 </Text>
               </Box>
+
               <div className={style.list_main}>
                 <p className={style.child1}>Buy IT Again</p>
                 <p className={style.child2}>
@@ -108,6 +161,7 @@ export default function AuthPop() {
                 </p>
               </div>{" "}
               <hr />
+              
               <div className={style.list_main}>
                 <p className={style.child1}>
                   {" "}
@@ -124,6 +178,7 @@ export default function AuthPop() {
                 </p>
               </div>{" "}
               <hr />
+             
               <div className={style.list_main}>
                 <p className={style.child1}>Rewards Bazaar</p>
                 <p className={style.child2}>Redeem items, samples, more</p>

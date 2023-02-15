@@ -1,13 +1,20 @@
 import { Heading, HStack, IconButton, Image, Stack, Text, VStack } from "@chakra-ui/react"
-
+import { BsPenFill } from "react-icons/bs";
 import { IoTrashBinSharp } from "react-icons/io5";
 
-const Users = ({users}) =>{
-    return (
-        <VStack  p={5}  w="full">
+const All_products =  ({products}) =>{
+  const handledelete = async  (id) =>{
+      console.log(id);
+  }
+  const update_price = async  (id) =>{
+      console.log(id);
+  }
+     return (
+        <>
+       <VStack  p={5}  w="full">
         
         <Stack alignSelf={"flex-start"} p={5} >
-        <Text fontWeight={"semibold"}  fontSize="xl" >All Users List</Text>
+        <Text  mb={'55'} fontWeight={"semibold"}  fontSize="xl" >All Products List</Text>
         </Stack>
 
         <HStack
@@ -17,9 +24,7 @@ const Users = ({users}) =>{
         alignContent={"flex-start"}
         alignItems={"flex-start"}
       >
-        {/* <Stack p={5}>
-          <Image maxW="500px" src={"https://i.ibb.co/tsThdpL/preview-1.gif"} />
-        </Stack> */}
+       
 
         <VStack p={5} position="relative" top="-100px" >
           <HStack
@@ -31,14 +36,14 @@ const Users = ({users}) =>{
             borderRadius={5}
             justifyContent={"space-between"}
           >
-            <Text>Username</Text>
-            <Text>Email</Text>
-            <Text>Password</Text>
+            <Text>Product Name </Text>
+            <Text>Price </Text>
+            {/* <Text>Password</Text> */}
             <Text>Remove</Text>
           </HStack>
           <VStack spacing={5}>
          
-          { users.map((el) =>(
+          { products.map((el) =>(
                <HStack
                p={5}
               
@@ -46,18 +51,26 @@ const Users = ({users}) =>{
                bg="#eee"
                borderRadius={5}
                justifyContent={"space-between"}
+               key= {el._id}
              >
                <Text>
                  {el.name}
                </Text>
-               <Text>{el.email}</Text>
-               <Text>{el.password}</Text>
+               <Text>{el.price}</Text>
+               {/* <Text>{el.password}</Text> */}
                <IconButton
                  fontSize="25px"
                  borderRadius={50}
                  variant="link"
-                 //onClick={toggleColorMode}
+                 onClick={() => handledelete(el._id)}
                  icon={<IoTrashBinSharp />}
+               />
+               <IconButton 
+               fontSize={'25px'}
+               borderRadius={50}
+               variant ='link'
+               onClick={() => update_price(el._id)}
+               icon={<BsPenFill />}
                />
              </HStack>
        ))
@@ -67,8 +80,7 @@ const Users = ({users}) =>{
 
         </HStack>
         </VStack>
-    
-    )
+        </>
+     )
 }
-export default Users
-// http://localhost:3000/api/users
+export default All_products
