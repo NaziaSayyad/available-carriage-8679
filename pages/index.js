@@ -110,8 +110,9 @@ export default class SimpleSlider extends Component {
       ],
     };
     return (
-      <>{
-      console.log("data",data)}
+      <>
+      {/* {
+        console.log("data",data)} */}
         <Routes />
         <Box w={"100%"} mb={"30px"}>
           <Box w={"90%"} m={"auto"}>
@@ -120,7 +121,7 @@ export default class SimpleSlider extends Component {
               {data.map((e) => {
                 return (
                   <Box bgColor={e.bg} key={e.name}>
-                    <Box>
+                    <Box key={e.bg}>
                       <Image w={"100%"} src={e.img} />
                     </Box>
                     <Box color={e.color} padding={"10px 20px 20px"}>
@@ -156,3 +157,7 @@ export default class SimpleSlider extends Component {
     );
   }
 }
+/* 
+  Ticket raise by the me two of tyh e iui hjhu i heiu re ireiu oieu oeruoi  eriouoie 
+  eruioer ieru8 eiou8 iou8 
+*/
