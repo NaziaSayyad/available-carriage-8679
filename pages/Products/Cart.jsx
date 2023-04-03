@@ -21,7 +21,7 @@ const Cart = () => {
     fetch("http://localhost:3000/api/cart", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        Authorization: `${JSON.parse(localStorage.getItem("token"))}`,
       },
     })
       .then((res) => res.json())
@@ -37,7 +37,7 @@ async function deleteData(id) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        Authorization: `${JSON.parse(localStorage.getItem("token"))}`,
       },
     })
       .then((res) => res.json())
@@ -64,7 +64,7 @@ const handleSelect = (e,el,qty)=>{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json",
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+            Authorization: `${JSON.parse(localStorage.getItem("token"))}`,
         },
         body: JSON.stringify({
           qty:qty

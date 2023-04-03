@@ -12,20 +12,20 @@ export default async function handler(req, res) {
   let updatedId = req.query.id;
   console.log(body);
   console.log(method);
-
   await Mongoconnect();
-  const token = req.headers?.authorization?.split(" ")[1];
-
+  const token =  req.headers['authorization'];
+// req.headers?.authorization?.split(" ")[1];
   let payload;
   let user;
+  // res.send({token})
   
   if (token) {
     const decoded = jwt.verify(token, "hush");
     if (decoded) {
       let userId = decoded.userID;
       user = userId;
-      console.log(user);
-      payload = { ...body, image: userId };
+      console.log(user,"user");
+      payload = { ...body, image: userId }
     }
   } else {
     res.send({ msg: "Please Login" });

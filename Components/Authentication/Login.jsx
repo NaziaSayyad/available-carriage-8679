@@ -21,7 +21,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/router";  
 import { useState } from "react";
 import { GrCircleInformation } from "react-icons/gr";
 import SignUp from "./SignUp";

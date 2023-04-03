@@ -157,7 +157,3 @@ export default class SimpleSlider extends Component {
     );
   }
 }
-/* 
-  Ticket raise by the me two of tyh e iui hjhu i heiu re ireiu oieu oeruoi  eriouoie 
-  eruioer ieru8 eiou8 iou8 
-*/

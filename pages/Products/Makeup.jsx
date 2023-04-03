@@ -84,11 +84,17 @@ export default function MakeupProducts() {
   // Add to Cart
 
   function handleCart(curElem) {
-    fetch("http://localhost:3000/api/cart", {
+    const token = localStorage.getItem("token");
+    if(!token){
+      alert("Please Login First")
+    
+    }
+    else{
+      fetch("http://localhost:3000/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        Authorization: `${JSON.parse(localStorage.getItem("token"))}`,
       },
       body: JSON.stringify(curElem),
     })
@@ -104,6 +110,8 @@ export default function MakeupProducts() {
       isClosable: true,
       position: "top",
     });
+    }
+    
   }
 
   // Sort start
