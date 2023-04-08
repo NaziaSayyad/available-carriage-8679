@@ -90,7 +90,7 @@ export default function SignUp() {
       return;
     }
 
-    return fetch("http://localhost:3000/api/auth/signup", {
+    return fetch("/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

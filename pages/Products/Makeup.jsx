@@ -68,7 +68,7 @@ export default function MakeupProducts() {
     console.log(min, max);
 
     const { data } = await axios.get(
-      `http://localhost:3000/api/shop/makeup?min=${min}&max=${max}`
+      `/api/shop/makeup?min=${min}&max=${max}`
     );
     console.log(data);
 
@@ -90,7 +90,7 @@ export default function MakeupProducts() {
     
     }
     else{
-      fetch("http://localhost:3000/api/cart", {
+      fetch("/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -632,7 +632,7 @@ export default function MakeupProducts() {
 }
 
 // export const getStaticProps = async () => {
-//     const res = await fetch("http://localhost:3000/api/shop/makeup");
+//     const res = await fetch("/api/shop/makeup");
 //     const data = await res.json();
 //     console.log(data,"get");
 //     return {

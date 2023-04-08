@@ -9,6 +9,7 @@ const All_products =  ({products}) =>{
   const update_price = async  (id) =>{
       console.log(id);
   }
+  console.log(products,"Pr");
      return (
         <>
        <VStack  p={5}  w="full">
@@ -57,7 +58,6 @@ const All_products =  ({products}) =>{
                  {el.name}
                </Text>
                <Text>{el.price}</Text>
-               {/* <Text>{el.password}</Text> */}
                <IconButton
                  fontSize="25px"
                  borderRadius={50}

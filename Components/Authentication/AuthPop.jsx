@@ -19,7 +19,7 @@ import {
 import style from "./auth.module.css";
 
 import { AiOutlineHeart } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Login from "./Login";
 import SignUp2 from "./SignUp2";
@@ -32,6 +32,13 @@ export default function AuthPop() {
   function handleName(value) {
     setName(value);
   }
+
+  useEffect(()=>{
+    JSON.stringify("name",localStorage.setItem(name));
+    const name = JSON.parse(localStorage.getItem("name"));
+    setName(name);
+  }, [])
+  
   const handlelogout = () =>{
     const token = JSON.parse(localStorage.getItem("token"));
     console.log(token,"token");

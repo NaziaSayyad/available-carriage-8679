@@ -8,10 +8,10 @@ const Place = () => {
     const [cartData, setCartData] = useState([]);
   
     function getCartData() {
-      fetch("http://localhost:3000/api/cart", {
+      fetch("/api/cart", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          Authorization: `${JSON.parse(localStorage.getItem("token"))}`,
         },
       })
         .then((res) => res.json())

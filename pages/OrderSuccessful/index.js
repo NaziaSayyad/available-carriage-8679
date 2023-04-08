@@ -22,7 +22,8 @@ const [data,setData]=useState([])
         </Box> */}
         
         <Box className={styles.headOrderPlaced}>
-        <Text fontWeight={"bold"} fontSize={'1.5rem'} className={styles.orderDetails} >Thanks for your order {data.FirstName+" "+data.LastName} <br/>Your order will be delivered to {data.StreetAddress}</Text>
+        <Text fontWeight={"bold"} fontSize={'1.5rem'} className={styles.orderDetails} >Thanks for your order
+         {data.FirstName+" "+data.LastName} <br/>Your order will be delivered to {data.StreetAddress}</Text>
           {/* <Text fontSize={'1.5rem'} fontWeight={'bold'}> THANKS FOR YOUR ORDER ID {"#"+Math.floor(Math.random()*10000)+"AxyzDERfgt"}</Text>   */}
            <Image 
            src = {congrats}
